@@ -1,0 +1,58 @@
+<mat-horizontal-stepper [linear]="isLinear" #stepper>
+	<!-- keep icons as numbers during edit-->
+	<!--
+  <ng-template matStepperIcon="edit" let-index="index">
+		{{index +1}}
+	</ng-template>
+  -->
+
+	<!-- change default 'edit' icon -->
+  <ng-template matStepperIcon="edit">
+		{{count}}
+	</ng-template>
+
+	<!-- change default 'done' icon -->
+	<!--
+  <ng-template matStepperIcon="done">
+		<mat-icon>done_all</mat-icon>
+	</ng-template>
+  -->
+
+	<!-- changed step icons -->
+	<ng-template matStepperIcon="home">
+		<mat-icon>home</mat-icon>
+	</ng-template>
+	<ng-template matStepperIcon="form">
+	2
+	</ng-template>
+	<ng-template matStepperIcon="last">
+	3
+	</ng-template>
+  
+	<mat-step label="First Step" state="home">
+		<div>
+			<button mat-button matStepperNext (click)="add()">Continue</button>
+    </div>
+	</mat-step>
+
+  <mat-step label="Fill out your address" state="form">
+    <form [formGroup]="formGroup">
+      <mat-form-field>
+        <input matInput placeholder="Address" formControlName="secondCtrl" required>
+      </mat-form-field>
+      <div>
+        <button mat-button matStepperPrevious (click)="minus()">Back</button>
+        <button mat-button matStepperNext (click)="add()">Next</button>
+      </div>
+    </form>
+  </mat-step>
+
+  <mat-step label="Done" state="last">
+    You are now done.
+    <div>
+      <button mat-button matStepperPrevious (click)="minus()">Back</button>
+      <button mat-button (click)="stepper.reset()">Reset</button>
+    </div>
+  </mat-step>
+
+</mat-horizontal-stepper>
